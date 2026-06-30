@@ -3,18 +3,23 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.zapovednik</groupId>
   <artifactId>group-service</artifactId>
-  <packaging>war</packaging>
+  <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>group-service Maven Webapp</name>
-  <url>http://maven.apache.org</url>
+  <name>group-service</name>
+
+  <properties>
+    <spring.boot.version>4.1.0-RC1</spring.boot.version>
+  </properties>
+
   <dependencies>
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+      <version>${spring.boot.version}</version>
+      <scope>compile</scope>
     </dependency>
   </dependencies>
+
   <build>
     <finalName>group-service</finalName>
   </build>
