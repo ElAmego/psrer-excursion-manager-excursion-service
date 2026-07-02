@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/001-create-organizations-table.yaml
+  - include:
+      file: db/changelog/002-create-responsible-specialists-table.yaml
+  - include:
+      file: db/changelog/003-create-routes-table.yaml
+  - include:
+      file: db/changelog/004-create-drivers-table.yaml
+  - include:
+      file: db/changelog/005-create-countries-table.yaml
+  - include:
+      file: db/changelog/006-create-tour-groups-table.yaml
+  - include:
+      file: db/changelog/007-create-group-countries-table.yaml
+  - include:
+      file: db/changelog/008-create-audit-logs-table.yaml
+  - include:
+      file: db/changelog/009-create-indexes.yaml
