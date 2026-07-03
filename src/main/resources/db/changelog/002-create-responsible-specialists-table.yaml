@@ -13,13 +13,13 @@ databaseChangeLog:
                     primaryKey: true
                     primaryKeyName: pk_responsible_specialists
               - column:
-                  name: name
+                  name: responsible_specialist_name
                   type: VARCHAR(50)
                   constraints:
                     unique: true
                     nullable: false
               - column:
-                  name: phone_number
+                  name: responsible_specialist_phone_number
                   type: VARCHAR(12)
                   constraints:
                     nullable: false

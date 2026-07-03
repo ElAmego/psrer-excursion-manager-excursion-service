@@ -24,7 +24,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: phone_number
+                  name: driver_phone_number
                   type: VARCHAR(12)
                   constraints:
                     nullable: false

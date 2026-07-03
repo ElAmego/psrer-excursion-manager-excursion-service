@@ -14,7 +14,7 @@ databaseChangeLog:
             indexName: idx_specialists_name
             columns:
               - column:
-                  name: name
+                  name: responsible_specialist_name
         - createIndex:
             tableName: routes
             indexName: idx_routes_name
