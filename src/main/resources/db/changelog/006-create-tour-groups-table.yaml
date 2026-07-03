@@ -19,12 +19,12 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: start_date
-                  type: TIMESTAMP
+                  type: DATE
                   constraints:
                     nullable: false
               - column:
                   name: end_date
-                  type: TIMESTAMP
+                  type: DATE
               - column:
                   name: is_legal
                   type: BOOLEAN
