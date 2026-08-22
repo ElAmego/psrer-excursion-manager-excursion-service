@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 6
+      id: 8
       author: "el.amegoal@gmail.com"
       changes:
         - createTable:
@@ -39,8 +39,6 @@ databaseChangeLog:
               - column:
                   name: customer_name
                   type: VARCHAR(50)
-                  constraints:
-                    nullable: false
               - column:
                   name: contact_data
                   type: VARCHAR(50)
@@ -67,6 +65,9 @@ databaseChangeLog:
               - column:
                   name: price
                   type: DECIMAL(10, 2)
+              - column:
+                name: export
+                type: DECIMAL(10, 2)
               - column:
                   name: is_paid
                   type: BOOLEAN

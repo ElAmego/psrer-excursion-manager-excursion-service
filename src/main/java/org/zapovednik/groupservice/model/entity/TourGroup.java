@@ -43,7 +43,7 @@ public class TourGroup extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     private Organization organization;
 
-    @Column(name = "customer_name", nullable = false, length = 50)
+    @Column(name = "customer_name", length = 50)
     private String customerName;
 
     @Column(name = "contact_data", nullable = false, length = 50)
@@ -63,6 +63,9 @@ public class TourGroup extends BaseEntity {
 
     @Column(name = "price", precision = 10, scale = 2)
     private BigDecimal price;
+
+    @Column(name = "export", precision = 10, scale = 2)
+    private BigDecimal export;
 
     @Column(name = "is_paid")
     private Boolean isPaid;

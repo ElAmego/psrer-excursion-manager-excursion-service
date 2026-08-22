@@ -4,17 +4,23 @@ databaseChangeLog:
       author: "el.amegoal@gmail.com"
       changes:
         - createTable:
-            tableName: organizations
+            tableName: banks
             columns:
               - column:
                   name: id
                   type: BIGSERIAL
                   constraints:
                     primaryKey: true
-                    primaryKeyName: pk_organizations
+                    primaryKeyName: pk_banks
               - column:
-                  name: organization_name
+                  name: bank_name
                   type: VARCHAR(50)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: bic
+                  type: VARCHAR(9)
                   constraints:
                     unique: true
                     nullable: false

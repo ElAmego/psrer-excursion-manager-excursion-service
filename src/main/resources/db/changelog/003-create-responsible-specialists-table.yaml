@@ -1,32 +1,35 @@
 databaseChangeLog:
   - changeSet:
-      id: 8
+      id: 3
       author: "el.amegoal@gmail.com"
       changes:
         - createTable:
-            tableName: audit_logs
+            tableName: responsible_specialists
             columns:
               - column:
                   name: id
                   type: BIGSERIAL
                   constraints:
                     primaryKey: true
-                    primaryKeyName: pk_audit_logs
+                    primaryKeyName: pk_responsible_specialists
               - column:
-                  name: user_id
-                  type: BIGINT
-                  constraints:
-                    nullable: false
-              - column:
-                  name: action
+                  name: responsible_specialist_name
                   type: VARCHAR(50)
                   constraints:
+                    unique: true
                     nullable: false
               - column:
-                  name: details
-                  type: JSONB
+                  name: responsible_specialist_phone_number
+                  type: VARCHAR(12)
+                  constraints:
+                    nullable: false
               - column:
                   name: created_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
                   type: TIMESTAMP
                   constraints:
                     nullable: false
