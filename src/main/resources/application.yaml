@@ -11,3 +11,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: validate
+
+jwt:
+  key-path:
+    public-key: classpath:keys/public.pem

@@ -12,6 +12,7 @@
     <liquibase.version>5.0.3</liquibase.version>
     <postgresql.driver>42.7.11</postgresql.driver>
     <lombok.version>1.18.46</lombok.version>
+    <jjwt.api.version>0.13.0</jjwt.api.version>
   </properties>
 
   <!-- Spring Boot -->
@@ -26,6 +27,13 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-jpa</artifactId>
+      <version>${spring.boot.version}</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
       <version>${spring.boot.version}</version>
       <scope>compile</scope>
     </dependency>
@@ -52,6 +60,28 @@
       <artifactId>lombok</artifactId>
       <version>${lombok.version}</version>
       <scope>compile</scope>
+    </dependency>
+
+    <!-- JWT -->
+    <dependency>
+      <groupId>io.jsonwebtoken</groupId>
+      <artifactId>jjwt-api</artifactId>
+      <version>${jjwt.api.version}</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>io.jsonwebtoken</groupId>
+      <artifactId>jjwt-impl</artifactId>
+      <version>${jjwt.api.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>io.jsonwebtoken</groupId>
+      <artifactId>jjwt-gson</artifactId>
+      <version>${jjwt.api.version}</version>
+      <scope>runtime</scope>
     </dependency>
   </dependencies>
 
