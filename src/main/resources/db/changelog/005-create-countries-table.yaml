@@ -13,7 +13,7 @@ databaseChangeLog:
                     primaryKey: true
                     primaryKeyName: pk_countries
               - column:
-                  name: code
+                  name: two_letter_country_code
                   type: VARCHAR(2)
                   constraints:
                     unique: true
