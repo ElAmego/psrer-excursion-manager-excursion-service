@@ -26,7 +26,7 @@ import org.zapovednik.groupservice.model.entity.type.TourGroupStatus;
 @NoArgsConstructor
 public class TourGroup extends BaseEntity {
 
-    @Column(name = "status", nullable = false, length = 32)
+    @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
     private TourGroupStatus status;
 
