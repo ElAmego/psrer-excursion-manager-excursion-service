@@ -19,11 +19,6 @@ databaseChangeLog:
                     unique: true
                     nullable: false
               - column:
-                  name: car
-                  type: VARCHAR(50)
-                  constraints:
-                    nullable: false
-              - column:
                   name: driver_phone_number
                   type: VARCHAR(12)
                   constraints:

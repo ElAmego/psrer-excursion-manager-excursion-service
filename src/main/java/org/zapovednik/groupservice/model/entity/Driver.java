@@ -21,9 +21,6 @@ public class Driver extends BaseEntity {
     @Column(name = "driver_name", unique = true, nullable = false, length = 50)
     private String driverName;
 
-    @Column(name = "car", nullable = false, length = 50)
-    private String car;
-
     @Column(name = "driver_phone_number", nullable = false, length = 12)
     private String driverPhoneNumber;
 }
