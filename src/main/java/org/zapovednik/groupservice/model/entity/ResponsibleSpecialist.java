@@ -21,6 +21,6 @@ public class ResponsibleSpecialist extends BaseEntity {
     @Column(name = "responsible_specialist_name", unique = true, nullable = false, length = 50)
     private String responsibleSpecialistName;
 
-    @Column(name = "responsible_specialist_phone_number", nullable = false, length = 12)
+    @Column(name = "responsible_specialist_phone_number", unique = true, nullable = false, length = 9)
     private String responsibleSpecialistPhoneNumber;
 }
