@@ -19,6 +19,13 @@ databaseChangeLog:
                     unique: true
                     nullable: false
               - column:
+                  name: route_num
+                  type: SMALLINT
+                  constraints:
+                    unique: true
+                    nullable: false
+                    check: "route_num >= 0 AND route_num <= 50"
+              - column:
                   name: created_at
                   type: TIMESTAMP
                   constraints:
