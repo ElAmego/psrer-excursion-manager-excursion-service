@@ -13,6 +13,7 @@
     <postgresql.driver>42.7.11</postgresql.driver>
     <lombok.version>1.18.46</lombok.version>
     <jjwt.api.version>0.13.0</jjwt.api.version>
+    <jakarta.validation.api.version>4.0.0-M1</jakarta.validation.api.version>
   </properties>
 
   <!-- Spring Boot -->
@@ -82,6 +83,14 @@
       <artifactId>jjwt-gson</artifactId>
       <version>${jjwt.api.version}</version>
       <scope>runtime</scope>
+    </dependency>
+
+    <!-- Jakarta Validation API -->
+    <dependency>
+      <groupId>jakarta.validation</groupId>
+      <artifactId>jakarta.validation-api</artifactId>
+      <version>${jakarta.validation.api.version}</version>
+      <scope>compile</scope>
     </dependency>
   </dependencies>
 
