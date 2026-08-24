@@ -12,6 +12,10 @@ import org.zapovednik.groupservice.model.entity.type.TourGroupStatus;
 import org.zapovednik.groupservice.model.repository.query.TourGroupQuery;
 
 public interface TourGroupRepository extends JpaRepository<TourGroup, Long> {
+    List<TourGroup> findAllByStatusIn(
+            final List<TourGroupStatus> statuses
+    );
+
     List<TourGroup> findAllByStartDateBetweenAndStatusIn(
             final LocalDate startDate,
             final LocalDate endDate,
