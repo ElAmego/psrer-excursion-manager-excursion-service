@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TourGroupCreateRequestDto {
+public class TourGroupExpectationRequestDto {
 
     @NotNull(message = "Start date is required")
     private LocalDate startDate;
