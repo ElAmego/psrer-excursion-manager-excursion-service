@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.zapovednik.groupservice.model.entity.Organization;
 import org.zapovednik.groupservice.model.entity.TourGroup;
 import org.zapovednik.groupservice.model.entity.type.TourGroupStatus;
 import org.zapovednik.groupservice.model.repository.query.TourGroupQuery;
@@ -22,10 +21,10 @@ public interface TourGroupRepository extends JpaRepository<TourGroup, Long> {
             final List<TourGroupStatus> statuses
     );
 
-    List<TourGroup> findAllByStartDateBetweenAndOrganizationAndStatusIn(
+    List<TourGroup> findAllByStartDateBetweenAndOrganizationIdAndStatusIn(
             final LocalDate startDate,
             final LocalDate endDate,
-            final Organization organization,
+            final Long organizationId,
             final List<TourGroupStatus> statuses
     );
 
@@ -42,7 +41,7 @@ public interface TourGroupRepository extends JpaRepository<TourGroup, Long> {
 
     List<TourGroup> findAllByStartDateBetweenAndStatusCompletedAndIsDocumentsSubmittedTrue(
             final LocalDate startDate,
-            LocalDate endDate
+            final LocalDate endDate
     );
 
     List<TourGroup> findAllByStartDateBetweenAndStatusCompletedAndIsDocumentsSubmittedFalse(
