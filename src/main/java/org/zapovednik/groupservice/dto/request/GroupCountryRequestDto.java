@@ -11,9 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class GroupCountryRequestDto {
 
-    @NotNull(message = "Group id is required")
-    private Long groupId;
-
     @NotNull(message = "Country id is required")
     private Long countryId;
 

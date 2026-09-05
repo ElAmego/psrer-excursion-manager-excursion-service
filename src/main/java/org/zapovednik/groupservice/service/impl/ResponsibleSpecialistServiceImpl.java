@@ -61,10 +61,7 @@ public class ResponsibleSpecialistServiceImpl implements ResponsibleSpecialistSe
         responsibleSpecialist.setResponsibleSpecialistName(requestDto.getResponsibleSpecialistName());
         responsibleSpecialist.setResponsibleSpecialistPhoneNumber(requestDto.getResponsibleSpecialistPhoneNumber());
 
-        final ResponsibleSpecialist savedResponsibleSpecialist = responsibleSpecialistRepository
-                .save(responsibleSpecialist);
-
-        return responsibleSpecialistMapper.toDto(savedResponsibleSpecialist);
+        return responsibleSpecialistMapper.toDto(responsibleSpecialist);
     }
 
     @Override

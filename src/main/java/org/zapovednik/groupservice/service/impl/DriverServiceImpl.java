@@ -55,9 +55,7 @@ public class DriverServiceImpl implements DriverService {
         driver.setDriverName(requestDto.getDriverName());
         driver.setDriverPhoneNumber(requestDto.getDriverPhoneNumber());
 
-        final Driver savedDriver = driverRepository.save(driver);
-
-        return driverMapper.toDto(savedDriver);
+        return driverMapper.toDto(driver);
     }
 
     @Override

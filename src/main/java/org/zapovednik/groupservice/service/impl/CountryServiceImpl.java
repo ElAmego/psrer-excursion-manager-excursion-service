@@ -55,9 +55,7 @@ public class CountryServiceImpl implements CountryService {
         country.setCountryName(requestDto.getCountryName());
         country.setTwoLetterCountryCode(requestDto.getTwoLetterCountryCode());
 
-        final Country savedCountry = countryRepository.save(country);
-
-        return countryMapper.toDto(savedCountry);
+        return countryMapper.toDto(country);
     }
 
     @Override

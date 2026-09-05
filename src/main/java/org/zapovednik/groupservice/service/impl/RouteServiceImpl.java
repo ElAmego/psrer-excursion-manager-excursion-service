@@ -55,9 +55,7 @@ public class RouteServiceImpl implements RouteService {
         route.setRouteName(requestDto.getRouteName());
         route.setRouteNum(requestDto.getRouteNum());
 
-        final Route savedRoute = routeRepository.save(route);
-
-        return routeMapper.toDto(savedRoute);
+        return routeMapper.toDto(route);
     }
 
     @Override

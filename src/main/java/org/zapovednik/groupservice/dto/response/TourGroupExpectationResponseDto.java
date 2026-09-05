@@ -21,6 +21,7 @@ public class TourGroupExpectationResponseDto {
 
     private Long routeId;
     private String routeName;
+    private Integer routeNum;
 
     private String customerName;
 

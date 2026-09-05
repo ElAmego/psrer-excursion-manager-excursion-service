@@ -34,6 +34,7 @@ public class TourGroupResponseDto {
 
     private Long routeId;
     private String routeName;
+    private Integer routeNum;
 
     private List<GroupCountryResponseDto> countries;
 }

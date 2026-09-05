@@ -76,9 +76,7 @@ public class OrganizationServiceImpl implements OrganizationService {
         organization.setCurrentAccount(requestDto.getCurrentAccount());
         organization.setBank(bank);
 
-        final Organization savedOrganization = organizationRepository.save(organization);
-
-        return organizationMapper.toDto(savedOrganization);
+        return organizationMapper.toDto(organization);
     }
 
     @Override

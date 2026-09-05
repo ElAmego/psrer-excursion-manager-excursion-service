@@ -55,9 +55,7 @@ public class BankServiceImpl implements BankService {
         bank.setBankName(requestDto.getBankName());
         bank.setBic(requestDto.getBic());
 
-        final Bank updatedBank = bankRepository.save(bank);
-
-        return bankMapper.toDto(updatedBank);
+        return bankMapper.toDto(bank);
     }
 
     @Override
