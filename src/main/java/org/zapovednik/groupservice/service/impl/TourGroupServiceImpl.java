@@ -8,10 +8,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.zapovednik.groupservice.dto.request.TourGroupExpectationRequestDto;
 import org.zapovednik.groupservice.dto.request.TourGroupProcessingRequestDto;
+import org.zapovednik.groupservice.dto.request.TourGroupStatusUpdateRequestDto;
 import org.zapovednik.groupservice.dto.response.TourGroupExpectationResponseDto;
 import org.zapovednik.groupservice.dto.response.TourGroupResponseDto;
 import org.zapovednik.groupservice.exception.custom.NotFoundException;
 import org.zapovednik.groupservice.mapper.TourGroupMapper;
+import org.zapovednik.groupservice.model.entity.Driver;
+import org.zapovednik.groupservice.model.entity.Organization;
+import org.zapovednik.groupservice.model.entity.ResponsibleSpecialist;
+import org.zapovednik.groupservice.model.entity.Route;
 import org.zapovednik.groupservice.model.entity.TourGroup;
 import org.zapovednik.groupservice.model.entity.type.TourGroupStatus;
 import org.zapovednik.groupservice.model.repository.DriverRepository;
@@ -19,10 +24,11 @@ import org.zapovednik.groupservice.model.repository.OrganizationRepository;
 import org.zapovednik.groupservice.model.repository.ResponsibleSpecialistRepository;
 import org.zapovednik.groupservice.model.repository.RouteRepository;
 import org.zapovednik.groupservice.model.repository.TourGroupRepository;
+import org.zapovednik.groupservice.service.TourGroupService;
 
 @Service
 @RequiredArgsConstructor
-public class TourGroupService {
+public class TourGroupServiceImpl implements TourGroupService {
     private final TourGroupRepository tourGroupRepository;
     private final RouteRepository routeRepository;
     private final OrganizationRepository organizationRepository;
@@ -30,10 +36,9 @@ public class TourGroupService {
     private final DriverRepository driverRepository;
     private final ResponsibleSpecialistRepository responsibleSpecialistRepository;
 
-    // TODO Figure out what DTO needs to be returned. Probably just need to return only id.
-
+    @Override
     @Transactional
-    public TourGroupExpectationResponseDto save(final TourGroupExpectationRequestDto requestDto) {
+    public Long save(final TourGroupExpectationRequestDto requestDto) {
         final TourGroup tourGroup = tourGroupMapper.toCreateEntity(requestDto);
         final Long routeId = requestDto.getRouteId();
 
@@ -48,9 +53,10 @@ public class TourGroupService {
 
         final TourGroup savedTourGroup = tourGroupRepository.save(tourGroup);
 
-        return tourGroupMapper.toCreateDto(savedTourGroup);
+        return savedTourGroup.getId();
     }
 
+    @Override
     @Transactional(readOnly = true)
     public TourGroupResponseDto findById(final Long tourGroupId) {
         final TourGroup tourGroup = tourGroupRepository.findById(tourGroupId)
@@ -59,6 +65,7 @@ public class TourGroupService {
         return tourGroupMapper.toDto(tourGroup);
     }
 
+    @Override
     @Transactional(readOnly = true)
     public List<TourGroupResponseDto> findAllByStatusIn(final List<TourGroupStatus> tourGroupStatuses) {
         final List<TourGroup> tourGroupList = tourGroupRepository.findAllByStatusIn(tourGroupStatuses);
@@ -68,6 +75,7 @@ public class TourGroupService {
                 .toList();
     }
 
+    @Override
     @Transactional(readOnly = true)
     public List<TourGroupResponseDto> findAllByStartDateBetweenAndStatusIn(
             final LocalDate startDate,
@@ -82,6 +90,7 @@ public class TourGroupService {
                 .toList();
     }
 
+    @Override
     @Transactional(readOnly = true)
     public List<TourGroupResponseDto> findAllByStartDateBetweenAndOrganizationIdAndStatusIn(
             final LocalDate startDate,
@@ -102,6 +111,7 @@ public class TourGroupService {
                 .toList();
     }
 
+    @Override
     @Transactional(readOnly = true)
     public List<TourGroupResponseDto> findAllByStartDateBetweenAndStatusCompletedAndIsPaidTrue(
             final LocalDate startDate,
@@ -115,6 +125,7 @@ public class TourGroupService {
                 .toList();
     }
 
+    @Override
     @Transactional(readOnly = true)
     public List<TourGroupResponseDto> findAllByStartDateBetweenAndStatusCompletedAndIsPaidFalse(
             final LocalDate startDate,
@@ -128,6 +139,7 @@ public class TourGroupService {
                 .toList();
     }
 
+    @Override
     @Transactional(readOnly = true)
     public List<TourGroupResponseDto> findAllByStartDateBetweenAndStatusCompletedAndIsDocumentsSubmittedTrue(
             final LocalDate startDate,
@@ -141,6 +153,7 @@ public class TourGroupService {
                 .toList();
     }
 
+    @Override
     @Transactional(readOnly = true)
     public List<TourGroupResponseDto> findAllByStartDateBetweenAndStatusCompletedAndIsDocumentsSubmittedFalse(
             final LocalDate startDate,
@@ -154,6 +167,7 @@ public class TourGroupService {
                 .toList();
     }
 
+    @Override
     @Transactional(readOnly = true)
     public Long countByStatusAndStartDateBetween(
             final TourGroupStatus status,
@@ -163,6 +177,7 @@ public class TourGroupService {
         return tourGroupRepository.countByStatusAndStartDateBetween(status, startDate, endDate);
     }
 
+    @Override
     @Transactional(readOnly = true)
     public Long countByIsLegalAndStatusAndStartDateBetween(
             final Boolean isLegal,
@@ -173,6 +188,7 @@ public class TourGroupService {
         return tourGroupRepository.countByIsLegalAndStatusAndStartDateBetween(isLegal, status, startDate, endDate);
     }
 
+    @Override
     @Transactional(readOnly = true)
     public BigDecimal sumPriceByStatusAndStartDateBetween(
             final TourGroupStatus status,
@@ -182,6 +198,7 @@ public class TourGroupService {
         return tourGroupRepository.sumPriceByStatusAndStartDateBetween(status, startDate, endDate);
     }
 
+    @Override
     @Transactional(readOnly = true)
     public BigDecimal sumPriceByIsLegalAndStatusAndStartDateBetween(
             final Boolean isLegal,
@@ -192,6 +209,7 @@ public class TourGroupService {
         return tourGroupRepository.sumPriceByIsLegalAndStatusAndStartDateBetween(isLegal, status, startDate, endDate);
     }
 
+    @Override
     @Transactional(readOnly = true)
     public Long countByOrganizationIdAndStatusAndStartDateBetween(
             final Long organizationId,
@@ -207,6 +225,7 @@ public class TourGroupService {
                 .countByOrganizationIdAndStatusAndStartDateBetween(organizationId, status, startDate, endDate);
     }
 
+    @Override
     @Transactional(readOnly = true)
     public BigDecimal sumPriceByOrganizationIdAndStatusAndStartDateBetween(
             final Long organizationId,
@@ -222,6 +241,7 @@ public class TourGroupService {
                 .sumPriceByOrganizationIdAndStatusAndStartDateBetween(organizationId, status, startDate, endDate);
     }
 
+    @Override
     @Transactional(readOnly = true)
     public Long countByDriverIdAndStatusCompletedAndStartDateBetween(
             final Long driverId,
@@ -236,6 +256,7 @@ public class TourGroupService {
                 .countByDriverIdAndStatusCompletedAndStartDateBetween(driverId, startDate, endDate);
     }
 
+    @Override
     @Transactional(readOnly = true)
     public Long countByResponsibleSpecialistIdAndStatusCompletedAndStartDateBetween(
             final Long responsibleSpecialistId,
@@ -251,6 +272,7 @@ public class TourGroupService {
                         endDate);
     }
 
+    @Override
     @Transactional(readOnly = true)
     public Long countByRouteIdAndStatusCompletedAndStartDateBetween(
             final Long routeId,
@@ -265,6 +287,7 @@ public class TourGroupService {
                 .countByRouteIdAndStatusCompletedAndStartDateBetween(routeId, startDate, endDate);
     }
 
+    @Override
     @Transactional(readOnly = true)
     public BigDecimal sumPriceByRouteIdAndStatusCompletedAndStartDateBetween(
             final Long routeId,
@@ -279,6 +302,23 @@ public class TourGroupService {
                 .sumPriceByRouteIdAndStatusCompletedAndStartDateBetween(routeId, startDate, endDate);
     }
 
+    @Override
+    @Transactional
+    public TourGroupResponseDto updateTourGroupStatus(
+            final Long tourGroupId,
+            final TourGroupStatusUpdateRequestDto requestDto
+    ) {
+        final TourGroup tourGroup = tourGroupRepository.findById(tourGroupId)
+                .orElseThrow(() -> new NotFoundException("Tour group not found: " + tourGroupId));
+
+        final TourGroupStatus tourGroupStatus = requestDto.getStatus();
+
+        tourGroup.setStatus(tourGroupStatus);
+
+        return tourGroupMapper.toDto(tourGroup);
+    }
+
+    @Override
     @Transactional
     public TourGroupExpectationResponseDto updateExpectationStatus(
             final Long tourGroupId,
@@ -293,32 +333,60 @@ public class TourGroupService {
         tourGroup.setContactData(requestDto.getContactData());
 
         final Long routeId = requestDto.getRouteId();
+        final Route route = routeRepository.findById(routeId)
+                .orElseThrow(() -> new NotFoundException("Route not found: " + routeId));
 
-        tourGroup.setRoute(routeRepository.getReferenceById(routeId));
+        tourGroup.setRoute(route);
 
         if (requestDto.getIsLegal()) {
             final Long organizationId = requestDto.getOrganizationId();
+            final Organization organization = organizationRepository.findById(organizationId)
+                    .orElseThrow(() -> new NotFoundException("Organization not found: " + organizationId));
 
-            tourGroup.setOrganization(organizationRepository.getReferenceById(organizationId));
+            tourGroup.setOrganization(organization);
             tourGroup.setCustomerName(null);
         } else {
             tourGroup.setCustomerName(requestDto.getCustomerName());
             tourGroup.setOrganization(null);
         }
 
-        final TourGroup savedTourGroup = tourGroupRepository.save(tourGroup);
-        return tourGroupMapper.toCreateDto(savedTourGroup);
+        return tourGroupMapper.toCreateDto(tourGroup);
     }
 
+    @Override
     @Transactional
-    public TourGroupExpectationResponseDto updateProcessingStatus(
+    public TourGroupResponseDto updateProcessingStatus(
             final Long tourGroupId,
             final TourGroupProcessingRequestDto requestDto
     ) {
         final TourGroup tourGroup = tourGroupRepository.findById(tourGroupId)
                 .orElseThrow(() -> new NotFoundException("Tour group not found: " + tourGroupId));
 
-        tourGroup.setStatus(TourGroupStatus.PROCESSING);
+        final Long responsibleSpecialistId = requestDto.getResponsibleSpecialistId();
 
+        if (responsibleSpecialistId != null) {
+            final ResponsibleSpecialist responsibleSpecialist = responsibleSpecialistRepository.findById(responsibleSpecialistId)
+                    .orElseThrow(() -> new NotFoundException("Responsible specialist not found: " + responsibleSpecialistId));
+
+            tourGroup.setResponsibleSpecialist(responsibleSpecialist);
+        }
+
+        final Long driverId = requestDto.getDriverId();
+
+        if (driverId != null) {
+            final Driver driver = driverRepository.findById(driverId)
+                    .orElseThrow(() -> new NotFoundException("Driver not found: " + driverId));
+
+            tourGroup.setDriver(driver);
+        }
+
+        tourGroup.setPrice(requestDto.getPrice());
+        tourGroup.setExport(requestDto.getExport());
+        tourGroup.setIsPaid(requestDto.getIsPaid());
+        tourGroup.setContractDate(requestDto.getContractDate());
+        tourGroup.setContractNumber(requestDto.getContractNumber());
+        tourGroup.setIsDocumentsSubmitted(requestDto.getIsDocumentsSubmitted());
+
+        return tourGroupMapper.toDto(tourGroup);
     }
 }

@@ -32,6 +32,7 @@ public interface TourGroupMapper {
     @Mapping(target = "founderName", source = "organization.founderName")
     @Mapping(target = "routeId", source = "route.id")
     @Mapping(target = "routeName", source = "route.routeName")
+    @Mapping(target = "routeNum", source = "route.routeNum")
     TourGroupExpectationResponseDto toCreateDto(TourGroup tourGroup);
 
     @Mapping(target = "organizationId", source = "organization.id")
@@ -43,6 +44,7 @@ public interface TourGroupMapper {
     @Mapping(target = "responsibleSpecialistName", source = "responsibleSpecialist.responsibleSpecialistName")
     @Mapping(target = "routeId", source = "route.id")
     @Mapping(target = "routeName", source = "route.routeName")
+    @Mapping(target = "routeNum", source = "route.routeNum")
     @Mapping(target = "countries", source = "groupCountries")
     TourGroupResponseDto toDto(TourGroup tourGroup);
 }
