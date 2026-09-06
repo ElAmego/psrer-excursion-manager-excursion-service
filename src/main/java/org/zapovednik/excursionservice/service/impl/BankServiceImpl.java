@@ -20,7 +20,7 @@ public class BankServiceImpl implements BankService {
 
     @Override
     @Transactional
-    public Long create(final BankRequestDto requestDto) {
+    public Long save(final BankRequestDto requestDto) {
         final Bank bank = bankMapper.toEntity(requestDto);
         final Bank savedBank = bankRepository.save(bank);
 

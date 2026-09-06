@@ -3,6 +3,7 @@ package org.zapovednik.excursionservice.service.impl;
 import java.time.LocalDate;
 import java.util.List;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +25,7 @@ public class OrganizationServiceImpl implements OrganizationService {
     private final OrganizationRepository organizationRepository;
     private final BankRepository bankRepository;
     private final OrganizationMapper organizationMapper;
+    private static final Pageable TOP_3 = PageRequest.of(0, 3);
 
     @Override
     @Transactional
@@ -93,19 +95,17 @@ public class OrganizationServiceImpl implements OrganizationService {
     @Transactional(readOnly = true)
     public List<OrganizationGroupCountProjection> findTop3ByGroupCount(
             final LocalDate startDate,
-            final LocalDate endDate,
-            final Pageable pageable
+            final LocalDate endDate
     ) {
-        return organizationRepository.findTop3OrganizationsByGroupCount(startDate, endDate, pageable);
+        return organizationRepository.findTop3OrganizationsByGroupCount(startDate, endDate, TOP_3);
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<OrganizationParticipantQuantitySumProjection> findTop3ByParticipantQuantitySum(
             final LocalDate startDate,
-            final LocalDate endDate,
-            final Pageable pageable
+            final LocalDate endDate
     ) {
-        return organizationRepository.findTop3OrganizationsByParticipantQuantitySum(startDate, endDate, pageable);
+        return organizationRepository.findTop3OrganizationsByParticipantQuantitySum(startDate, endDate, TOP_3);
     }
 }
