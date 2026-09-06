@@ -2,13 +2,13 @@ package org.zapovednik.excursionservice.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.zapovednik.excursionservice.dto.request.TourGroupExpectationRequestDto;
-import org.zapovednik.excursionservice.dto.response.TourGroupExpectationResponseDto;
-import org.zapovednik.excursionservice.dto.response.TourGroupResponseDto;
-import org.zapovednik.excursionservice.model.entity.TourGroup;
+import org.zapovednik.excursionservice.dto.request.ExcursionGroupExpectationRequestDto;
+import org.zapovednik.excursionservice.dto.response.ExcursionGroupExpectationResponseDto;
+import org.zapovednik.excursionservice.dto.response.ExcursionGroupResponseDto;
+import org.zapovednik.excursionservice.model.entity.ExcursionGroup;
 
 @Mapper(componentModel = "spring")
-public interface TourGroupMapper {
+public interface ExcursionGroupMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "status", ignore = true)  // устанавливается в сервисе
@@ -25,7 +25,7 @@ public interface TourGroupMapper {
     @Mapping(target = "isDocumentsSubmitted", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    TourGroup toCreateEntity(TourGroupExpectationRequestDto request);
+    ExcursionGroup toCreateEntity(ExcursionGroupExpectationRequestDto request);
 
     @Mapping(target = "organizationId", source = "organization.id")
     @Mapping(target = "organizationName", source = "organization.organizationName")
@@ -33,7 +33,7 @@ public interface TourGroupMapper {
     @Mapping(target = "routeId", source = "route.id")
     @Mapping(target = "routeName", source = "route.routeName")
     @Mapping(target = "routeNum", source = "route.routeNum")
-    TourGroupExpectationResponseDto toCreateDto(TourGroup tourGroup);
+    ExcursionGroupExpectationResponseDto toCreateDto(ExcursionGroup excursionGroup);
 
     @Mapping(target = "organizationId", source = "organization.id")
     @Mapping(target = "organizationName", source = "organization.organizationName")
@@ -46,5 +46,5 @@ public interface TourGroupMapper {
     @Mapping(target = "routeName", source = "route.routeName")
     @Mapping(target = "routeNum", source = "route.routeNum")
     @Mapping(target = "countries", source = "groupCountries")
-    TourGroupResponseDto toDto(TourGroup tourGroup);
+    ExcursionGroupResponseDto toDto(ExcursionGroup excursionGroup);
 }

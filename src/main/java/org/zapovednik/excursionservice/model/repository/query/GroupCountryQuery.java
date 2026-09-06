@@ -8,18 +8,18 @@ public final class GroupCountryQuery {
     public static final String SUM_PARTICIPANT_QUANTITY_BY_STATUS_AND_START_DATE_BETWEEN = """
         SELECT COALESCE(SUM(gc.participantQuantity), 0) as totalParticipants
         FROM GroupCountry gc
-        JOIN gc.tourGroup tg
-        WHERE tg.status = :status
-        AND tg.startDate BETWEEN :startDate AND :endDate
+        JOIN gc.excursionGroup eg
+        WHERE eg.status = :status
+        AND eg.startDate BETWEEN :startDate AND :endDate
     """;
 
     public static final String SUM_PARTICIPANT_QUANTITY_BY_IS_LEGAL_AND_STATUS_AND_START_DATE_BETWEEN = """
         SELECT COALESCE(SUM(gc.participantQuantity), 0) as totalParticipants
         FROM GroupCountry gc
-        JOIN gc.tourGroup tg
-        WHERE tg.isLegal = :isLegal
-        AND tg.status = :status
-        AND tg.startDate BETWEEN :startDate AND :endDate
+        JOIN gc.excursionGroup eg
+        WHERE eg.isLegal = :isLegal
+        AND eg.status = :status
+        AND eg.startDate BETWEEN :startDate AND :endDate
     """;
 
     public static final String FIND_COUNTRY_STATISTICS_BY_STATUS_COMPLETED_AND_START_DATE_BETWEEN = """
@@ -27,27 +27,27 @@ public final class GroupCountryQuery {
         SUM(gc.participantQuantity) as totalParticipants
         FROM GroupCountry gc
         JOIN gc.country c
-        JOIN gc.tourGroup tg
-        WHERE tg.status = 'COMPLETED'
-        AND tg.startDate BETWEEN :startDate AND :endDate
+        JOIN gc.excursionGroup eg
+        WHERE eg.status = 'COMPLETED'
+        AND eg.startDate BETWEEN :startDate AND :endDate
         GROUP BY c.id, c.code, c.countryName
     """;
 
     public static final String SUM_PARTICIPANT_QUANTITY_BY_ORGANIZATION_ID_AND_STATUS_AND_START_DATE_BETWEEN = """
         SELECT COALESCE(SUM(gc.participantQuantity), 0) as totalParticipants
         FROM GroupCountry gc
-        JOIN gc.tourGroup tg
-        WHERE tg.organization.id = :organizationId
-        AND tg.status = :status
-        AND tg.startDate BETWEEN :startDate AND :endDate
+        JOIN gc.excursionGroup eg
+        WHERE eg.organization.id = :organizationId
+        AND eg.status = :status
+        AND eg.startDate BETWEEN :startDate AND :endDate
     """;
 
     public static final String SUM_PARTICIPANT_QUANTITY_BY_ROUTE_ID_AND_STATUS_COMPLETED_AND_START_DATE_BETWEEN = """
         SELECT COALESCE(SUM(gc.participantQuantity), 0) as totalParticipants
         FROM GroupCountry gc
-        JOIN gc.tourGroup tg
-        WHERE tg.route.id = :routeId
-        AND tg.status = 'COMPLETED'
-        AND tg.startDate BETWEEN :startDate AND :endDate
+        JOIN gc.excursionGroup eg
+        WHERE eg.route.id = :routeId
+        AND eg.status = 'COMPLETED'
+        AND eg.startDate BETWEEN :startDate AND :endDate
     """;
 }

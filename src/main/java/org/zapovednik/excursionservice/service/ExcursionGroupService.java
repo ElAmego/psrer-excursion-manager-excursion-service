@@ -3,75 +3,75 @@ package org.zapovednik.excursionservice.service;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
-import org.zapovednik.excursionservice.dto.request.TourGroupExpectationRequestDto;
-import org.zapovednik.excursionservice.dto.request.TourGroupProcessingRequestDto;
-import org.zapovednik.excursionservice.dto.request.TourGroupStatusUpdateRequestDto;
-import org.zapovednik.excursionservice.dto.response.TourGroupExpectationResponseDto;
-import org.zapovednik.excursionservice.dto.response.TourGroupResponseDto;
-import org.zapovednik.excursionservice.model.entity.type.TourGroupStatus;
+import org.zapovednik.excursionservice.dto.request.ExcursionGroupExpectationRequestDto;
+import org.zapovednik.excursionservice.dto.request.ExcursionGroupProcessingRequestDto;
+import org.zapovednik.excursionservice.dto.request.ExcursionGroupStatusUpdateRequestDto;
+import org.zapovednik.excursionservice.dto.response.ExcursionGroupExpectationResponseDto;
+import org.zapovednik.excursionservice.dto.response.ExcursionGroupResponseDto;
+import org.zapovednik.excursionservice.model.entity.type.ExcursionGroupStatus;
 
-public interface TourGroupService {
-    Long save(final TourGroupExpectationRequestDto requestDto);
-    TourGroupResponseDto findById(final Long tourGroupId);
-    List<TourGroupResponseDto> findAllByStatusIn(final List<TourGroupStatus> tourGroupStatuses);
-    List<TourGroupResponseDto> findAllByStartDateBetweenAndStatusIn(
+public interface ExcursionGroupService {
+    Long save(final ExcursionGroupExpectationRequestDto requestDto);
+    ExcursionGroupResponseDto findById(final Long excursionGroupId);
+    List<ExcursionGroupResponseDto> findAllByStatusIn(final List<ExcursionGroupStatus> excursionGroupStatuses);
+    List<ExcursionGroupResponseDto> findAllByStartDateBetweenAndStatusIn(
             final LocalDate startDate,
             final LocalDate endDate,
-            final List<TourGroupStatus> tourGroupStatuses
+            final List<ExcursionGroupStatus> excursionGroupStatuses
     );
-    List<TourGroupResponseDto> findAllByStartDateBetweenAndOrganizationIdAndStatusIn(
+    List<ExcursionGroupResponseDto> findAllByStartDateBetweenAndOrganizationIdAndStatusIn(
             final LocalDate startDate,
             final LocalDate endDate,
             final Long organizationId,
-            final List<TourGroupStatus> tourGroupStatuses
+            final List<ExcursionGroupStatus> excursionGroupStatuses
     );
-    List<TourGroupResponseDto> findAllByStartDateBetweenAndStatusCompletedAndIsPaidTrue(
+    List<ExcursionGroupResponseDto> findAllByStartDateBetweenAndStatusCompletedAndIsPaidTrue(
             final LocalDate startDate,
             final LocalDate endDate
     );
-    List<TourGroupResponseDto> findAllByStartDateBetweenAndStatusCompletedAndIsPaidFalse(
+    List<ExcursionGroupResponseDto> findAllByStartDateBetweenAndStatusCompletedAndIsPaidFalse(
             final LocalDate startDate,
             final LocalDate endDate
     );
-    List<TourGroupResponseDto> findAllByStartDateBetweenAndStatusCompletedAndIsDocumentsSubmittedTrue(
+    List<ExcursionGroupResponseDto> findAllByStartDateBetweenAndStatusCompletedAndIsDocumentsSubmittedTrue(
             final LocalDate startDate,
             final LocalDate endDate
     );
-    List<TourGroupResponseDto> findAllByStartDateBetweenAndStatusCompletedAndIsDocumentsSubmittedFalse(
+    List<ExcursionGroupResponseDto> findAllByStartDateBetweenAndStatusCompletedAndIsDocumentsSubmittedFalse(
             final LocalDate startDate,
             final LocalDate endDate
     );
     Long countByStatusAndStartDateBetween(
-            final TourGroupStatus status,
+            final ExcursionGroupStatus status,
             final LocalDate startDate,
             final LocalDate endDate
     );
     Long countByIsLegalAndStatusAndStartDateBetween(
             final Boolean isLegal,
-            final TourGroupStatus status,
+            final ExcursionGroupStatus status,
             final LocalDate startDate,
             final LocalDate endDate
     );
     BigDecimal sumPriceByStatusAndStartDateBetween(
-            final TourGroupStatus status,
+            final ExcursionGroupStatus status,
             final LocalDate startDate,
             final LocalDate endDate
     );
     BigDecimal sumPriceByIsLegalAndStatusAndStartDateBetween(
             final Boolean isLegal,
-            final TourGroupStatus status,
+            final ExcursionGroupStatus status,
             final LocalDate startDate,
             final LocalDate endDate
     );
     Long countByOrganizationIdAndStatusAndStartDateBetween(
             final Long organizationId,
-            final TourGroupStatus status,
+            final ExcursionGroupStatus status,
             final LocalDate startDate,
             final LocalDate endDate
     );
     BigDecimal sumPriceByOrganizationIdAndStatusAndStartDateBetween(
             final Long organizationId,
-            final TourGroupStatus status,
+            final ExcursionGroupStatus status,
             final LocalDate startDate,
             final LocalDate endDate
     );
@@ -95,16 +95,16 @@ public interface TourGroupService {
             final LocalDate startDate,
             final LocalDate endDate
     );
-    TourGroupResponseDto updateTourGroupStatus(
-            final Long tourGroupId,
-            final TourGroupStatusUpdateRequestDto requestDto
+    ExcursionGroupResponseDto updateExcursionGroupStatus(
+            final Long excursionGroupId,
+            final ExcursionGroupStatusUpdateRequestDto requestDto
     );
-    TourGroupExpectationResponseDto updateExpectationStatus(
-            final Long tourGroupId,
-            final TourGroupExpectationRequestDto requestDto
+    ExcursionGroupExpectationResponseDto updateExpectationStatus(
+            final Long excursionGroupId,
+            final ExcursionGroupExpectationRequestDto requestDto
     );
-    TourGroupResponseDto updateProcessingStatus(
-            final Long tourGroupId,
-            final TourGroupProcessingRequestDto requestDto
+    ExcursionGroupResponseDto updateProcessingStatus(
+            final Long excursionGroupId,
+            final ExcursionGroupProcessingRequestDto requestDto
     );
 }

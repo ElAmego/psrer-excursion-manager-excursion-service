@@ -1,6 +1,6 @@
 package org.zapovednik.excursionservice.model.entity.type;
 
-public enum TourGroupStatus {
+public enum ExcursionGroupStatus {
     EXPECTATION,
     PROCESSING,
     COMPLETED,

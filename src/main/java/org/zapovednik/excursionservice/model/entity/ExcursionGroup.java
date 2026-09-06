@@ -15,20 +15,20 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.zapovednik.excursionservice.model.entity.type.TourGroupStatus;
+import org.zapovednik.excursionservice.model.entity.type.ExcursionGroupStatus;
 
 @Entity
-@Table(name = "tour_groups")
+@Table(name = "excursion_groups")
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class TourGroup extends BaseEntity {
+public class ExcursionGroup extends BaseEntity {
 
     @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
-    private TourGroupStatus status;
+    private ExcursionGroupStatus status;
 
     @Column(name = "start_date", nullable = false)
     private LocalDate startDate;

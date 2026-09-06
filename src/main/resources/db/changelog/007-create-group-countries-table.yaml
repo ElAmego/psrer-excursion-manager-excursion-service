@@ -17,8 +17,8 @@ databaseChangeLog:
                   type: BIGINT
                   constraints:
                     nullable: false
-                    foreignKeyName: fk_group_countries_tour_groups
-                    references: tour_groups(id)
+                    foreignKeyName: fk_group_countries_excursion_groups
+                    references: excursion_groups(id)
                     deleteCascade: true
               - column:
                   name: country_id

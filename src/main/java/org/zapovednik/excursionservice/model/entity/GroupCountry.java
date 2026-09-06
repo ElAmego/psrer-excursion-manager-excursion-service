@@ -23,7 +23,7 @@ public class GroupCountry extends BaseEntity {
 
     @JoinColumn(name = "group_id", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
-    private TourGroup tourGroup;
+    private ExcursionGroup excursionGroup;
 
     @JoinColumn(name = "country_id", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)

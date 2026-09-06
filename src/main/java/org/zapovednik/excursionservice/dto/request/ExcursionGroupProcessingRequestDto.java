@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TourGroupProcessingRequestDto {
+public class ExcursionGroupProcessingRequestDto {
     private Long accompanyingPersonId;
     private Long driverId;
 

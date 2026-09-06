@@ -11,13 +11,13 @@ import org.zapovednik.excursionservice.exception.custom.NotFoundException;
 import org.zapovednik.excursionservice.mapper.GroupCountryMapper;
 import org.zapovednik.excursionservice.model.entity.Country;
 import org.zapovednik.excursionservice.model.entity.GroupCountry;
-import org.zapovednik.excursionservice.model.entity.TourGroup;
-import org.zapovednik.excursionservice.model.entity.type.TourGroupStatus;
+import org.zapovednik.excursionservice.model.entity.ExcursionGroup;
+import org.zapovednik.excursionservice.model.entity.type.ExcursionGroupStatus;
 import org.zapovednik.excursionservice.model.repository.CountryRepository;
 import org.zapovednik.excursionservice.model.repository.GroupCountryRepository;
 import org.zapovednik.excursionservice.model.repository.OrganizationRepository;
 import org.zapovednik.excursionservice.model.repository.RouteRepository;
-import org.zapovednik.excursionservice.model.repository.TourGroupRepository;
+import org.zapovednik.excursionservice.model.repository.ExcursionGroupRepository;
 import org.zapovednik.excursionservice.model.repository.projection.CountryStatisticsProjection;
 import org.zapovednik.excursionservice.service.GroupCountryService;
 
@@ -26,22 +26,22 @@ import org.zapovednik.excursionservice.service.GroupCountryService;
 public class GroupCountryServiceImpl implements GroupCountryService {
     private final GroupCountryRepository groupCountryRepository;
     private final CountryRepository countryRepository;
-    private final TourGroupRepository tourGroupRepository;
+    private final ExcursionGroupRepository excursionGroupRepository;
     private final OrganizationRepository organizationRepository;
     private final RouteRepository routeRepository;
     private final GroupCountryMapper groupCountryMapper;
 
     @Override
     @Transactional
-    public Long save(final Long tourGroupId, final GroupCountryRequestDto requestDto) {
-        final TourGroup tourGroup = tourGroupRepository.findById(tourGroupId)
-                .orElseThrow(() -> new NotFoundException("Tour group not found: " + tourGroupId));
+    public Long save(final Long excursionGroupId, final GroupCountryRequestDto requestDto) {
+        final ExcursionGroup excursionGroup = excursionGroupRepository.findById(excursionGroupId)
+                .orElseThrow(() -> new NotFoundException("Excursion group not found: " + excursionGroupId));
         final Long countryId = requestDto.getCountryId();
         final Country country = countryRepository.findById(countryId)
                 .orElseThrow(() -> new NotFoundException("Country not found: " + countryId));
         final GroupCountry groupCountry = groupCountryMapper.toEntity(requestDto);
 
-        groupCountry.setTourGroup(tourGroup);
+        groupCountry.setExcursionGroup(excursionGroup);
         groupCountry.setCountry(country);
 
         final GroupCountry savedGroupCountry = groupCountryRepository.save(groupCountry);
@@ -52,7 +52,7 @@ public class GroupCountryServiceImpl implements GroupCountryService {
     @Override
     @Transactional(readOnly = true)
     public Long sumParticipantQuantityByStatusAndStartDateBetween(
-            final TourGroupStatus status,
+            final ExcursionGroupStatus status,
             final LocalDate startDate,
             final LocalDate endDate
     ) {
@@ -63,7 +63,7 @@ public class GroupCountryServiceImpl implements GroupCountryService {
     @Transactional(readOnly = true)
     public Long sumParticipantQuantityByIsLegalAndStatusAndStartDateBetween(
             final Boolean isLegal,
-            final TourGroupStatus status,
+            final ExcursionGroupStatus status,
             final LocalDate startDate,
             final LocalDate endDate
     ) {
@@ -84,7 +84,7 @@ public class GroupCountryServiceImpl implements GroupCountryService {
     @Transactional(readOnly = true)
     public Long sumParticipantQuantityByOrganizationIdAndStatusAndStartDateBetween(
             final Long organizationId,
-            final TourGroupStatus status,
+            final ExcursionGroupStatus status,
             final LocalDate startDate,
             final LocalDate endDate
     ) {

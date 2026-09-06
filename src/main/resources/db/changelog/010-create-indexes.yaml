@@ -34,14 +34,14 @@ databaseChangeLog:
               - column:
                   name: user_id
         - createIndex:
-            tableName: tour_groups
-            indexName: idx_tour_groups_start_date
+            tableName: excursion_groups
+            indexName: idx_excursion_groups_start_date
             columns:
               - column:
                   name: start_date
         - createIndex:
-            tableName: tour_groups
-            indexName: idx_tour_groups_status
+            tableName: excursion_groups
+            indexName: idx_excursion_groups_status
             columns:
               - column:
                   name: status

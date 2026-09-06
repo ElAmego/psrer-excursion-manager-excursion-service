@@ -6,45 +6,45 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.zapovednik.excursionservice.model.entity.TourGroup;
-import org.zapovednik.excursionservice.model.entity.type.TourGroupStatus;
-import org.zapovednik.excursionservice.model.repository.query.TourGroupQuery;
+import org.zapovednik.excursionservice.model.entity.ExcursionGroup;
+import org.zapovednik.excursionservice.model.entity.type.ExcursionGroupStatus;
+import org.zapovednik.excursionservice.model.repository.query.ExcursionGroupQuery;
 
-public interface TourGroupRepository extends JpaRepository<TourGroup, Long> {
-    List<TourGroup> findAllByStatusIn(
-            final List<TourGroupStatus> statuses
+public interface ExcursionGroupRepository extends JpaRepository<ExcursionGroup, Long> {
+    List<ExcursionGroup> findAllByStatusIn(
+            final List<ExcursionGroupStatus> statuses
     );
 
-    List<TourGroup> findAllByStartDateBetweenAndStatusIn(
+    List<ExcursionGroup> findAllByStartDateBetweenAndStatusIn(
             final LocalDate startDate,
             final LocalDate endDate,
-            final List<TourGroupStatus> statuses
+            final List<ExcursionGroupStatus> statuses
     );
 
-    List<TourGroup> findAllByStartDateBetweenAndOrganizationIdAndStatusIn(
+    List<ExcursionGroup> findAllByStartDateBetweenAndOrganizationIdAndStatusIn(
             final LocalDate startDate,
             final LocalDate endDate,
             final Long organizationId,
-            final List<TourGroupStatus> statuses
+            final List<ExcursionGroupStatus> statuses
     );
 
 
-    List<TourGroup> findAllByStartDateBetweenAndStatusCompletedAndIsPaidTrue(
+    List<ExcursionGroup> findAllByStartDateBetweenAndStatusCompletedAndIsPaidTrue(
             final LocalDate startDate,
             final LocalDate endDate
     );
 
-    List<TourGroup> findAllByStartDateBetweenAndStatusCompletedAndIsPaidFalse(
+    List<ExcursionGroup> findAllByStartDateBetweenAndStatusCompletedAndIsPaidFalse(
             final LocalDate startDate,
             final LocalDate endDate
     );
 
-    List<TourGroup> findAllByStartDateBetweenAndStatusCompletedAndIsDocumentsSubmittedTrue(
+    List<ExcursionGroup> findAllByStartDateBetweenAndStatusCompletedAndIsDocumentsSubmittedTrue(
             final LocalDate startDate,
             final LocalDate endDate
     );
 
-    List<TourGroup> findAllByStartDateBetweenAndStatusCompletedAndIsDocumentsSubmittedFalse(
+    List<ExcursionGroup> findAllByStartDateBetweenAndStatusCompletedAndIsDocumentsSubmittedFalse(
             final LocalDate startDate,
             final LocalDate endDate
     );
@@ -53,7 +53,7 @@ public interface TourGroupRepository extends JpaRepository<TourGroup, Long> {
 
     // Статистика общая: кол-во групп принято или отменено
     Long countByStatusAndStartDateBetween(
-            final TourGroupStatus status,
+            final ExcursionGroupStatus status,
             final LocalDate startDate,
             final LocalDate endDate
     );
@@ -61,24 +61,24 @@ public interface TourGroupRepository extends JpaRepository<TourGroup, Long> {
     // Статистика общая: кол-во групп в рамках физ. или юр. лиц принято или отменено кол-во групп
     Long countByIsLegalAndStatusAndStartDateBetween(
             final Boolean isLegal,
-            final TourGroupStatus status,
+            final ExcursionGroupStatus status,
             final LocalDate startDate,
             final LocalDate endDate
     );
 
     // Статистика общая: получено или потеряно денег
-    @Query(value = TourGroupQuery.SUM_PRICE_BY_STATUS_AND_START_DATE_BETWEEN)
+    @Query(value = ExcursionGroupQuery.SUM_PRICE_BY_STATUS_AND_START_DATE_BETWEEN)
     BigDecimal sumPriceByStatusAndStartDateBetween(
-            @Param("status") final TourGroupStatus status,
+            @Param("status") final ExcursionGroupStatus status,
             @Param("startDate") final LocalDate startDate,
             @Param("endDate") final LocalDate endDate
     );
 
     // Статистика общая: получено или потеряно денег в рамках физ. или юр. лиц
-    @Query(value = TourGroupQuery.SUM_PRICE_BY_IS_LEGAL_AND_STATUS_AND_START_DATE_BETWEEN)
+    @Query(value = ExcursionGroupQuery.SUM_PRICE_BY_IS_LEGAL_AND_STATUS_AND_START_DATE_BETWEEN)
     BigDecimal sumPriceByIsLegalAndStatusAndStartDateBetween(
             @Param("isLegal") final Boolean isLegal,
-            @Param("status") final TourGroupStatus status,
+            @Param("status") final ExcursionGroupStatus status,
             @Param("startDate") final LocalDate startDate,
             @Param("endDate") final LocalDate endDate
     );
@@ -86,16 +86,16 @@ public interface TourGroupRepository extends JpaRepository<TourGroup, Long> {
     // Статистика по юр. лицам индивидуальная: принято или отменено кол-во групп
     Long countByOrganizationIdAndStatusAndStartDateBetween(
             final Long organizationId,
-            final TourGroupStatus status,
+            final ExcursionGroupStatus status,
             final LocalDate startDate,
             final LocalDate endDate
     );
 
     // Статистика по юр. лицам индивидуальная: получено или потеряно денег
-    @Query(value = TourGroupQuery.SUM_PRICE_BY_ORGANIZATION_ID_AND_STATUS_AND_START_DATE_BETWEEN)
+    @Query(value = ExcursionGroupQuery.SUM_PRICE_BY_ORGANIZATION_ID_AND_STATUS_AND_START_DATE_BETWEEN)
     BigDecimal sumPriceByOrganizationIdAndStatusAndStartDateBetween(
             @Param("organizationId") final Long organizationId,
-            @Param("status") final TourGroupStatus status,
+            @Param("status") final ExcursionGroupStatus status,
             @Param("startDate") final LocalDate startDate,
             @Param("endDate") final LocalDate endDate
     );
@@ -122,7 +122,7 @@ public interface TourGroupRepository extends JpaRepository<TourGroup, Long> {
     );
 
     // Статистика по маршрутам: получено денег (status -> Completed)
-    @Query(value = TourGroupQuery.SUM_PRICE_BY_ROUTE_ID_AND_STATUS_COMPLETED_AND_START_DATE_BETWEEN)
+    @Query(value = ExcursionGroupQuery.SUM_PRICE_BY_ROUTE_ID_AND_STATUS_COMPLETED_AND_START_DATE_BETWEEN)
     BigDecimal sumPriceByRouteIdAndStatusCompletedAndStartDateBetween(
             @Param("routeId") final Long routeId,
             @Param("startDate") final LocalDate startDate,

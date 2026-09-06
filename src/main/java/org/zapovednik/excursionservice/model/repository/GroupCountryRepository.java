@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.zapovednik.excursionservice.model.entity.GroupCountry;
-import org.zapovednik.excursionservice.model.entity.type.TourGroupStatus;
+import org.zapovednik.excursionservice.model.entity.type.ExcursionGroupStatus;
 import org.zapovednik.excursionservice.model.repository.projection.CountryStatisticsProjection;
 import org.zapovednik.excursionservice.model.repository.query.GroupCountryQuery;
 
@@ -15,7 +15,7 @@ public interface GroupCountryRepository extends JpaRepository<GroupCountry, Long
     // Статистика общая: кол-во людей принято или отменено
     @Query(value = GroupCountryQuery.SUM_PARTICIPANT_QUANTITY_BY_STATUS_AND_START_DATE_BETWEEN)
     Long sumParticipantQuantityByStatusAndStartDateBetween(
-            @Param("status") final TourGroupStatus status,
+            @Param("status") final ExcursionGroupStatus status,
             @Param("startDate") final LocalDate startDate,
             @Param("endDate") final LocalDate endDate
     );
@@ -24,7 +24,7 @@ public interface GroupCountryRepository extends JpaRepository<GroupCountry, Long
     @Query(value = GroupCountryQuery.SUM_PARTICIPANT_QUANTITY_BY_IS_LEGAL_AND_STATUS_AND_START_DATE_BETWEEN)
     Long sumParticipantQuantityByIsLegalAndStatusAndStartDateBetween(
             @Param("isLegal") final Boolean isLegal,
-            @Param("status") final TourGroupStatus status,
+            @Param("status") final ExcursionGroupStatus status,
             @Param("startDate") final LocalDate startDate,
             @Param("endDate") final LocalDate endDate
     );
@@ -40,7 +40,7 @@ public interface GroupCountryRepository extends JpaRepository<GroupCountry, Long
     @Query(value = GroupCountryQuery.SUM_PARTICIPANT_QUANTITY_BY_ORGANIZATION_ID_AND_STATUS_AND_START_DATE_BETWEEN)
     Long sumParticipantQuantityByOrganizationIdAndStatusAndStartDateBetween(
             @Param("organizationId") final Long organizationId,
-            @Param("status") final TourGroupStatus status,
+            @Param("status") final ExcursionGroupStatus status,
             @Param("startDate") final LocalDate startDate,
             @Param("endDate") final LocalDate endDate
     );

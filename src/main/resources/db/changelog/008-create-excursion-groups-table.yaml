@@ -4,14 +4,14 @@ databaseChangeLog:
       author: "el.amegoal@gmail.com"
       changes:
         - createTable:
-            tableName: tour_groups
+            tableName: excursion_groups
             columns:
               - column:
                   name: id
                   type: BIGSERIAL
                   constraints:
                     primaryKey: true
-                    primaryKeyName: pk_tour_groups
+                    primaryKeyName: pk_excursion_groups
               - column:
                   name: status
                   type: VARCHAR(32)
@@ -36,7 +36,7 @@ databaseChangeLog:
                   name: organization_id
                   type: BIGINT
                   constraints:
-                    foreignKeyName: fk_tour_groups_organizations
+                    foreignKeyName: fk_excursion_groups_organizations
                     references: organizations(id)
               - column:
                   name: customer_name
@@ -50,19 +50,19 @@ databaseChangeLog:
                   name: accompanying_person_id
                   type: BIGINT
                   constraints:
-                    foreignKeyName: fk_tour_groups_accompanying_persons
+                    foreignKeyName: fk_excursion_groups_accompanying_persons
                     references: accompanying_persons(id)
               - column:
                   name: route_id
                   type: BIGINT
                   constraints:
-                    foreignKeyName: fk_tour_groups_routes
+                    foreignKeyName: fk_excursion_groups_routes
                     references: routes(id)
               - column:
                   name: driver_id
                   type: BIGINT
                   constraints:
-                    foreignKeyName: fk_tour_groups_drivers
+                    foreignKeyName: fk_excursion_groups_drivers
                     references: drivers(id)
               - column:
                   name: price
