@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TourGroupProcessingRequestDto {
-    private Long responsibleSpecialistId;
+    private Long accompanyingPersonId;
     private Long driverId;
 
     @DecimalMin(value = "0.00", message = "Price must not be less than 0")

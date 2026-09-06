@@ -10,11 +10,11 @@ databaseChangeLog:
               - column:
                   name: organization_name
         - createIndex:
-            tableName: responsible_specialists
-            indexName: idx_specialists_name
+            tableName: accompanying_persons
+            indexName: idx_accompanying_persons_name
             columns:
               - column:
-                  name: responsible_specialist_name
+                  name: accompanying_person_name
         - createIndex:
             tableName: routes
             indexName: idx_routes_name

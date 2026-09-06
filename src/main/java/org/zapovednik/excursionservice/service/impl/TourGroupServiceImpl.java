@@ -15,13 +15,13 @@ import org.zapovednik.excursionservice.exception.custom.NotFoundException;
 import org.zapovednik.excursionservice.mapper.TourGroupMapper;
 import org.zapovednik.excursionservice.model.entity.Driver;
 import org.zapovednik.excursionservice.model.entity.Organization;
-import org.zapovednik.excursionservice.model.entity.ResponsibleSpecialist;
+import org.zapovednik.excursionservice.model.entity.AccompanyingPerson;
 import org.zapovednik.excursionservice.model.entity.Route;
 import org.zapovednik.excursionservice.model.entity.TourGroup;
 import org.zapovednik.excursionservice.model.entity.type.TourGroupStatus;
+import org.zapovednik.excursionservice.model.repository.AccompanyingPersonRepository;
 import org.zapovednik.excursionservice.model.repository.DriverRepository;
 import org.zapovednik.excursionservice.model.repository.OrganizationRepository;
-import org.zapovednik.excursionservice.model.repository.ResponsibleSpecialistRepository;
 import org.zapovednik.excursionservice.model.repository.RouteRepository;
 import org.zapovednik.excursionservice.model.repository.TourGroupRepository;
 import org.zapovednik.excursionservice.service.TourGroupService;
@@ -34,7 +34,7 @@ public class TourGroupServiceImpl implements TourGroupService {
     private final OrganizationRepository organizationRepository;
     private final TourGroupMapper tourGroupMapper;
     private final DriverRepository driverRepository;
-    private final ResponsibleSpecialistRepository responsibleSpecialistRepository;
+    private final AccompanyingPersonRepository accompanyingPersonRepository;
 
     @Override
     @Transactional
@@ -258,17 +258,17 @@ public class TourGroupServiceImpl implements TourGroupService {
 
     @Override
     @Transactional(readOnly = true)
-    public Long countByResponsibleSpecialistIdAndStatusCompletedAndStartDateBetween(
-            final Long responsibleSpecialistId,
+    public Long countByAccompanyingPersonIdAndStatusCompletedAndStartDateBetween(
+            final Long accompanyingPersonId,
             final LocalDate startDate,
             final LocalDate endDate
     ) {
-        if (!responsibleSpecialistRepository.existsById(responsibleSpecialistId)) {
-            throw new NotFoundException("Responsible specialist not found: " + responsibleSpecialistId);
+        if (!accompanyingPersonRepository.existsById(accompanyingPersonId)) {
+            throw new NotFoundException("Accompanying person not found: " + accompanyingPersonId);
         }
 
         return tourGroupRepository
-                .countByResponsibleSpecialistIdAndStatusCompletedAndStartDateBetween(responsibleSpecialistId, startDate,
+                .countByAccompanyingPersonIdAndStatusCompletedAndStartDateBetween(accompanyingPersonId, startDate,
                         endDate);
     }
 
@@ -362,13 +362,13 @@ public class TourGroupServiceImpl implements TourGroupService {
         final TourGroup tourGroup = tourGroupRepository.findById(tourGroupId)
                 .orElseThrow(() -> new NotFoundException("Tour group not found: " + tourGroupId));
 
-        final Long responsibleSpecialistId = requestDto.getResponsibleSpecialistId();
+        final Long accompanyingPersonId = requestDto.getAccompanyingPersonId();
 
-        if (responsibleSpecialistId != null) {
-            final ResponsibleSpecialist responsibleSpecialist = responsibleSpecialistRepository.findById(responsibleSpecialistId)
-                    .orElseThrow(() -> new NotFoundException("Responsible specialist not found: " + responsibleSpecialistId));
+        if (accompanyingPersonId != null) {
+            final AccompanyingPerson accompanyingPerson = accompanyingPersonRepository.findById(accompanyingPersonId)
+                    .orElseThrow(() -> new NotFoundException("Accompanying person not found: " + accompanyingPersonId));
 
-            tourGroup.setResponsibleSpecialist(responsibleSpecialist);
+            tourGroup.setAccompanyingPerson(accompanyingPerson);
         }
 
         final Long driverId = requestDto.getDriverId();

@@ -49,9 +49,9 @@ public class TourGroup extends BaseEntity {
     @Column(name = "contact_data", nullable = false, length = 50)
     private String contactData;
 
-    @JoinColumn(name = "responsible_specialist_id")
+    @JoinColumn(name = "accompanying_person_id")
     @ManyToOne(fetch = FetchType.LAZY)
-    private ResponsibleSpecialist responsibleSpecialist;
+    private AccompanyingPerson accompanyingPerson;
 
     @JoinColumn(name = "route_id")
     @ManyToOne(fetch = FetchType.LAZY)

@@ -10,17 +10,17 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "responsible_specialists")
+@Table(name = "accompanying_persons")
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ResponsibleSpecialist extends BaseEntity {
+public class AccompanyingPerson extends BaseEntity {
 
-    @Column(name = "responsible_specialist_name", unique = true, nullable = false, length = 50)
-    private String responsibleSpecialistName;
+    @Column(name = "accompanying_person_name", unique = true, nullable = false, length = 50)
+    private String accompanyingPersonName;
 
-    @Column(name = "responsible_specialist_phone_number", unique = true, nullable = false, length = 9)
-    private String responsibleSpecialistPhoneNumber;
+    @Column(name = "accompanying_person_phone_number", unique = true, nullable = false, length = 9)
+    private String accompanyingPersonPhoneNumber;
 }

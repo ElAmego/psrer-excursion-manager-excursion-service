@@ -47,11 +47,11 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: responsible_specialist_id
+                  name: accompanying_person_id
                   type: BIGINT
                   constraints:
-                    foreignKeyName: fk_tour_groups_responsible_specialists
-                    references: responsible_specialists(id)
+                    foreignKeyName: fk_tour_groups_accompanying_persons
+                    references: accompanying_persons(id)
               - column:
                   name: route_id
                   type: BIGINT

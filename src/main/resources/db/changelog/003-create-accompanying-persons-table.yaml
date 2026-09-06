@@ -4,22 +4,22 @@ databaseChangeLog:
       author: "el.amegoal@gmail.com"
       changes:
         - createTable:
-            tableName: responsible_specialists
+            tableName: accompanying_persons
             columns:
               - column:
                   name: id
                   type: BIGSERIAL
                   constraints:
                     primaryKey: true
-                    primaryKeyName: pk_responsible_specialists
+                    primaryKeyName: pk_accompanying_persons
               - column:
-                  name: responsible_specialist_name
+                  name: accompanying_person_name
                   type: VARCHAR(50)
                   constraints:
                     unique: true
                     nullable: false
               - column:
-                  name: responsible_specialist_phone_number
+                  name: accompanying_person_phone_number
                   type: VARCHAR(9)
                   constraints:
                     unique: true

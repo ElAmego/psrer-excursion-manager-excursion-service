@@ -80,8 +80,8 @@ public interface TourGroupService {
             final LocalDate startDate,
             final LocalDate endDate
     );
-    Long countByResponsibleSpecialistIdAndStatusCompletedAndStartDateBetween(
-            final Long responsibleSpecialistId,
+    Long countByAccompanyingPersonIdAndStatusCompletedAndStartDateBetween(
+            final Long accompanyingPersonId,
             final LocalDate startDate,
             final LocalDate endDate
     );

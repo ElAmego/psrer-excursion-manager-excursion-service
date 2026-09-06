@@ -108,8 +108,8 @@ public interface TourGroupRepository extends JpaRepository<TourGroup, Long> {
     );
 
     // Статистика по сопровождающим: кол-во групп было сопровождено (status -> Completed)
-    Long countByResponsibleSpecialistIdAndStatusCompletedAndStartDateBetween(
-            final Long responsibleSpecialistId,
+    Long countByAccompanyingPersonIdAndStatusCompletedAndStartDateBetween(
+            final Long accompanyingPersonId,
             final LocalDate startDate,
             final LocalDate endDate
     );

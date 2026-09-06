@@ -29,8 +29,8 @@ public class TourGroupResponseDto {
     private Long driverId;
     private String driverName;
 
-    private Long responsibleSpecialistId;
-    private String responsibleSpecialistName;
+    private Long accompanyingPersonId;
+    private String accompanyingPersonName;
 
     private Long routeId;
     private String routeName;

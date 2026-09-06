@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ResponsibleSpecialistResponseDto {
+public class AccompanyingPersonResponseDto {
     private Long id;
-    private String responsibleSpecialistName;
-    private String responsibleSpecialistPhoneNumber;
+    private String accompanyingPersonName;
+    private String accompanyingPersonPhoneNumber;
 }
