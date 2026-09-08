@@ -29,24 +29,16 @@ public interface ExcursionGroupRepository extends JpaRepository<ExcursionGroup, 
     );
 
 
-    List<ExcursionGroup> findAllByStartDateBetweenAndStatusCompletedAndIsPaidTrue(
+    List<ExcursionGroup> findAllByStartDateBetweenAndStatusCompletedAndIsPaid(
             final LocalDate startDate,
-            final LocalDate endDate
+            final LocalDate endDate,
+            final Boolean isPaid
     );
 
-    List<ExcursionGroup> findAllByStartDateBetweenAndStatusCompletedAndIsPaidFalse(
+    List<ExcursionGroup> findAllByStartDateBetweenAndStatusCompletedAndIsDocumentsSubmitted(
             final LocalDate startDate,
-            final LocalDate endDate
-    );
-
-    List<ExcursionGroup> findAllByStartDateBetweenAndStatusCompletedAndIsDocumentsSubmittedTrue(
-            final LocalDate startDate,
-            final LocalDate endDate
-    );
-
-    List<ExcursionGroup> findAllByStartDateBetweenAndStatusCompletedAndIsDocumentsSubmittedFalse(
-            final LocalDate startDate,
-            final LocalDate endDate
+            final LocalDate endDate,
+            final Boolean isDocumentsSubmitted
     );
 
     // --------------------------------- Статистика ---------------------------------

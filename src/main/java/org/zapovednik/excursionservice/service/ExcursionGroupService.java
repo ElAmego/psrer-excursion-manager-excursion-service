@@ -25,21 +25,15 @@ public interface ExcursionGroupService {
             final Long organizationId,
             final List<ExcursionGroupStatus> excursionGroupStatuses
     );
-    List<ExcursionGroupResponseDto> findAllByStartDateBetweenAndStatusCompletedAndIsPaidTrue(
+    List<ExcursionGroupResponseDto> findAllByStartDateBetweenAndStatusCompletedAndIsPaid(
             final LocalDate startDate,
-            final LocalDate endDate
+            final LocalDate endDate,
+            final Boolean isPaid
     );
-    List<ExcursionGroupResponseDto> findAllByStartDateBetweenAndStatusCompletedAndIsPaidFalse(
+    List<ExcursionGroupResponseDto> findAllByStartDateBetweenAndStatusCompletedAndIsDocumentsSubmitted(
             final LocalDate startDate,
-            final LocalDate endDate
-    );
-    List<ExcursionGroupResponseDto> findAllByStartDateBetweenAndStatusCompletedAndIsDocumentsSubmittedTrue(
-            final LocalDate startDate,
-            final LocalDate endDate
-    );
-    List<ExcursionGroupResponseDto> findAllByStartDateBetweenAndStatusCompletedAndIsDocumentsSubmittedFalse(
-            final LocalDate startDate,
-            final LocalDate endDate
+            final LocalDate endDate,
+            final Boolean isDocumentsSubmitted
     );
     Long countByStatusAndStartDateBetween(
             final ExcursionGroupStatus status,

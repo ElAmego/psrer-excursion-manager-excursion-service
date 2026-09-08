@@ -113,12 +113,13 @@ public class ExcursionGroupServiceImpl implements ExcursionGroupService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<ExcursionGroupResponseDto> findAllByStartDateBetweenAndStatusCompletedAndIsPaidTrue(
+    public List<ExcursionGroupResponseDto> findAllByStartDateBetweenAndStatusCompletedAndIsPaid(
             final LocalDate startDate,
-            final LocalDate endDate
+            final LocalDate endDate,
+            final Boolean isPaid
     ) {
         final List<ExcursionGroup> excursionGroupList = excursionGroupRepository
-                .findAllByStartDateBetweenAndStatusCompletedAndIsPaidTrue(startDate, endDate);
+                .findAllByStartDateBetweenAndStatusCompletedAndIsPaid(startDate, endDate, isPaid);
 
         return excursionGroupList.stream()
                 .map(excursionGroupMapper::toDto)
@@ -127,40 +128,13 @@ public class ExcursionGroupServiceImpl implements ExcursionGroupService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<ExcursionGroupResponseDto> findAllByStartDateBetweenAndStatusCompletedAndIsPaidFalse(
+    public List<ExcursionGroupResponseDto> findAllByStartDateBetweenAndStatusCompletedAndIsDocumentsSubmitted(
             final LocalDate startDate,
-            final LocalDate endDate
+            final LocalDate endDate,
+            final Boolean isDocumentsSubmitted
     ) {
         final List<ExcursionGroup> excursionGroupList = excursionGroupRepository
-                .findAllByStartDateBetweenAndStatusCompletedAndIsPaidFalse(startDate, endDate);
-
-        return excursionGroupList.stream()
-                .map(excursionGroupMapper::toDto)
-                .toList();
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public List<ExcursionGroupResponseDto> findAllByStartDateBetweenAndStatusCompletedAndIsDocumentsSubmittedTrue(
-            final LocalDate startDate,
-            final LocalDate endDate
-    ) {
-        final List<ExcursionGroup> excursionGroupList = excursionGroupRepository
-                .findAllByStartDateBetweenAndStatusCompletedAndIsDocumentsSubmittedTrue(startDate, endDate);
-
-        return excursionGroupList.stream()
-                .map(excursionGroupMapper::toDto)
-                .toList();
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public List<ExcursionGroupResponseDto> findAllByStartDateBetweenAndStatusCompletedAndIsDocumentsSubmittedFalse(
-            final LocalDate startDate,
-            final LocalDate endDate
-    ) {
-        final List<ExcursionGroup> excursionGroupList = excursionGroupRepository
-                .findAllByStartDateBetweenAndStatusCompletedAndIsDocumentsSubmittedFalse(startDate, endDate);
+                .findAllByStartDateBetweenAndStatusCompletedAndIsDocumentsSubmitted(startDate, endDate, isDocumentsSubmitted);
 
         return excursionGroupList.stream()
                 .map(excursionGroupMapper::toDto)
