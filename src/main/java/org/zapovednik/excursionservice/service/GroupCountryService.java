@@ -9,6 +9,7 @@ import org.zapovednik.excursionservice.model.repository.projection.CountryStatis
 
 public interface GroupCountryService {
     Long save(final Long excursionGroupId, final GroupCountryRequestDto requestDto);
+    List<GroupCountryResponseDto> findAllByExcursionGroupId(final Long excursionGroupId);
     Long sumParticipantQuantityByStatusAndStartDateBetween(
             final ExcursionGroupStatus status,
             final LocalDate startDate,

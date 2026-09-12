@@ -51,6 +51,21 @@ public class GroupCountryServiceImpl implements GroupCountryService {
 
     @Override
     @Transactional(readOnly = true)
+    public List<GroupCountryResponseDto> findAllByExcursionGroupId(final Long excursionGroupId) {
+        if (excursionGroupRepository.existsById(excursionGroupId)) {
+            final List<GroupCountry> groupCountryList = groupCountryRepository
+                    .findAllByExcursionGroupId(excursionGroupId);
+
+            return groupCountryList.stream()
+                    .map(groupCountryMapper::toDto)
+                    .toList();
+        } else {
+            throw new NotFoundException("Excursion group not found: " + excursionGroupId);
+        }
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public Long sumParticipantQuantityByStatusAndStartDateBetween(
             final ExcursionGroupStatus status,
             final LocalDate startDate,

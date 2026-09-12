@@ -11,6 +11,7 @@ import org.zapovednik.excursionservice.model.repository.projection.CountryStatis
 import org.zapovednik.excursionservice.model.repository.query.GroupCountryQuery;
 
 public interface GroupCountryRepository extends JpaRepository<GroupCountry, Long> {
+    List<GroupCountry> findAllByExcursionGroupId(final Long excursionGroupId);
 
     // Статистика общая: кол-во людей принято или отменено
     @Query(value = GroupCountryQuery.SUM_PARTICIPANT_QUANTITY_BY_STATUS_AND_START_DATE_BETWEEN)
